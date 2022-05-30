@@ -9,12 +9,47 @@ function App() {
 
     OneSignal.init({ appId: '87e14b84-8d98-4c39-9a08-8d781f78e86b' }).then(() => {
         setInitialized(true);
-        OneSignal.showSlidedownPrompt().then(() => {
-            console.log('====================================');
-            console.log('run in here');
-            console.log('====================================');
+        OneSignal.showSlidedownPrompt().then((result) => {
+            // console.log(result);
+            // let random = Math.floor(Math.random() * 10000000);
+            // Setting External User Id with Callback Available in SDK Version 3.9.3+
+            // OneSignal.setExternalUserId(random, (results) => {
+            //     // The results will contain push and email success statuses
+            //     console.log('Results of setting external user id');
+            //     console.log(results);
+
+            //     // Push can be expected in almost every situation with a success status, but
+            //     // as a pre-caution its good to verify it exists
+            //     if (results.push && results.push.success) {
+            //         console.log('Results of setting external user id push status:');
+            //         console.log(results.push.success);
+            //     }
+
+            //     // Verify the email is set or check that the results have an email success status
+            //     if (results.email && results.email.success) {
+            //         console.log('Results of setting external user id email status:');
+            //         console.log(results.email.success);
+            //     }
+
+            //     // Verify the number is set or check that the results have an sms success status
+            //     if (results.sms && results.sms.success) {
+            //         console.log('Results of setting external user id sms status:');
+            //         console.log(results.sms.success);
+            //     }
+            // });
         });
     })
+    OneSignal.on('subscriptionChange', async function (isSubscribed) {
+        console.log("The user's subscription state is now:", isSubscribed);
+        let result = await OneSignal.getUserId();
+        console.log("userid", result);
+    });
+    function setExternalUserId() {
+        let random = Math.floor(Math.random() * 10000000);
+        OneSignal.push(function () {
+            OneSignal.setExternalUserId(random);
+        });
+    }
     const [variation, setVariation] = useState([])
     const [productOption, setProductOption] = useState([])
     const loopOver = (originalArray, arr, str = '', final = []) => {
