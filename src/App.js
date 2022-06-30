@@ -10,8 +10,8 @@ function App() {
     OneSignal.init({ appId: '57f0a6ce-5124-4b3d-b730-324c4201d4c8' }).then(() => {
         setInitialized(true);
         OneSignal.showSlidedownPrompt().then((result) => {
-            // console.log(result);
-            // let random = Math.floor(Math.random() * 10000000);
+            console.log(result);
+            let random = Math.floor(Math.random() * 10000000);
             // Setting External User Id with Callback Available in SDK Version 3.9.3+
             // OneSignal.setExternalUserId(random, (results) => {
             //     // The results will contain push and email success statuses
@@ -44,12 +44,12 @@ function App() {
         let result = await OneSignal.getUserId();
         console.log("userid", result);
     });
-    function setExternalUserId() {
-        let random = Math.floor(Math.random() * 10000000);
-        OneSignal.push(function () {
-            OneSignal.setExternalUserId(random);
-        });
-    }
+    // function setExternalUserId() {
+    //     let random = Math.floor(Math.random() * 10000000);
+    //     OneSignal.push(function () {
+    //         OneSignal.setExternalUserId(random);
+    //     });
+    // }
     const [variation, setVariation] = useState([])
     const [productOption, setProductOption] = useState([])
     const loopOver = (originalArray, arr, str = '', final = []) => {
