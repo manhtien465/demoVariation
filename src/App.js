@@ -7,7 +7,7 @@ import OneSignal from 'react-onesignal';
 function App() {
     const [initialized, setInitialized] = useState(false);
 
-    OneSignal.init({ appId: '87e14b84-8d98-4c39-9a08-8d781f78e86b' }).then(() => {
+    OneSignal.init({ appId: '57f0a6ce-5124-4b3d-b730-324c4201d4c8' }).then(() => {
         setInitialized(true);
         OneSignal.showSlidedownPrompt().then((result) => {
             // console.log(result);
